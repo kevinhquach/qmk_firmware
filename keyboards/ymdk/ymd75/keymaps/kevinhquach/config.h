@@ -7,16 +7,31 @@
 
 #define USB_POLLING_INTERVAL_MS 1
 #define QMK_KEYS_PER_SCAN 11
-#define MATRIX_IO_DELAY 15 //to use with custom matrix implementation, might need to increase (max 30)
+#define MATRIX_IO_DELAY 10 //to use with custom matrix implementation, might need to increase (max 30)
+
+//23 slightly too low
+//30 works
+
+//matrix + debounce
+//27 + 25 good
+//27 + 15 good
+//27 + 13 bad!!
+//27 + 14 good? maybe rare enough to not happen
+//15 + 14 good
+    //not really too annoyed with 14 debounce, I wasn't able to hit 14ms holds on old keyboard anyway...
+//wtf 10 + 14 works
+    //~1650 when typing, ~1500 idle (good enough for me)
 
 #define FORCE_NKRO
 
 #ifdef DEBOUNCE
     #undef DEBOUNCE
-    #define DEBOUNCE 6 //with eager, this doesn't matter unless I can double tap a key in DEBOUNCE ms or if I need to hold for less than DEBOUNCE ms
+    #define DEBOUNCE 14 //with eager, this doesn't matter unless I can double tap a key in DEBOUNCE ms or if I need to hold for less than DEBOUNCE ms
 #else
-    #define DEBOUNCE 6
+    #define DEBOUNCE 14
 #endif
+//7 too low?
+//9 too low
 
 #ifdef LED_PIN_ON_STATE
     #undef LED_PIN_ON_STATE
